@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Open Account | VJBank</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f4f8ff, #ffffff);
+            color: #1f2937;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        header {
+            width: 100%;
+            height: 72px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0b3d91;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .back-home {
+            text-decoration: none;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .back-home:hover {
+            color: #2563eb;
+        }
+
+        /* ================= PAGE ================= */
+
+        .page-container {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+        /* ================= FORM CARD ================= */
+
+        .form-container {
+            width: 500px;
+            background: #ffffff;
+            padding: 38px 42px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 18px 45px rgba(15, 23, 42, 0.10);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-icon {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            background: #eaf2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        .form-header h1 {
+            color: #0f172a;
+            font-size: 29px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            background: #ffffff;
+            color: #111827;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        /* ================= PASSWORD ================= */
+
+        .password-input {
+            padding-right: 65px !important;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #2563eb;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .password-strength {
+            margin-top: 7px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* ================= DEPOSIT ================= */
+
+        .deposit-note {
+            margin-top: 6px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .create-button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #0b3d91, #2563eb);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+        }
+
+        .create-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        /* ================= LOGIN ================= */
+
+        .login-link {
+            text-align: center;
+            margin-top: 23px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #2563eb;
+            font-weight: 700;
+            text-decoration: none;
+            margin-left: 4px;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ================= SECURITY NOTE ================= */
+
+        .security-note {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 20px;
+            padding-top: 17px;
+            border-top: 1px solid #e5e7eb;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 12px;
+            padding: 18px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 0 22px;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .page-container {
+                padding: 30px 15px;
+                align-items: flex-start;
+            }
+
+            .form-container {
+                width: 100%;
+                padding: 30px 24px;
+            }
+
+            .form-header h1 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+
+        <div class="logo">
+            VJ<span>Bank</span>
+        </div>
+
+        <a href="/" class="back-home">
+            ← Back to Home
+        </a>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <div class="page-container">
+
+        <div class="form-container">
+
+            <!-- FORM HEADER -->
+
+            <div class="form-header">
+
+                <div class="form-icon">
+                    🏦
+                </div>
+
+                <h1>Open Your Account</h1>
+
+                <p>
+                    Create your secure VJBank account<br>
+                    and start banking with confidence.
+                </p>
+
+            </div>
+
+
+            <!-- ================= REGISTER FORM ================= -->
+
+            <form action="/register" method="post" onsubmit="return validateForm()">
+
+                <!-- Full Name -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="phone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="Enter 10-digit phone number"
+                        maxlength="10"
+                        pattern="[0-9]{10}"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="password-input"
+                            placeholder="Create a strong password"
+                            minlength="8"
+                            required
+                            oninput="checkPasswordStrength()"
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="togglePassword('password', this)"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="passwordStrength"
+                        class="password-strength"
+                    >
+                        Use at least 8 characters.
+                    </div>
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Confirm Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            class="password-input"
+                            placeholder="Re-enter your password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            class="show-password"
+                            onclick="togglePassword('confirmPassword', this)"
+                        >
+                            Show
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Initial Deposit -->
+
+                <div class="form-group">
+
+                    <label for="deposit">
+                        Initial Deposit
+                    </label>
+
+                    <input
+                        type="number"
+                        id="deposit"
+                        name="deposit"
+                        placeholder="Enter initial deposit"
+                        min="0"
+                        step="0.01"
+                        required
+                    >
+
+                    <div class="deposit-note">
+                        You can add money to your account after registration.
+                    </div>
+
+                </div>
+
+
+                <!-- Submit -->
+
+                <button
+                    type="submit"
+                    class="create-button"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <!-- Login -->
+
+            <div class="login-link">
+
+                Already have an account?
+
+                <a href="/login">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- Security -->
+
+            <div class="security-note">
+
+                🔒 Your account information is securely stored.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 VJBank. All Rights Reserved.
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function togglePassword(inputId, button) {
+
+            const input = document.getElementById(inputId);
+
+            if (input.type === "password") {
+
+                input.type = "text";
+                button.textContent = "Hide";
+
+            } else {
+
+                input.type = "password";
+                button.textContent = "Show";
+
+            }
+        }
+
+
+        function checkPasswordStrength() {
+
+            const password =
+                document.getElementById("password").value;
+
+            const strength =
+                document.getElementById("passwordStrength");
+
+            if (password.length === 0) {
+
+                strength.textContent =
+                    "Use at least 8 characters.";
+
+                strength.style.color = "#64748b";
+
+            } else if (password.length < 8) {
+
+                strength.textContent =
+                    "Password is too short.";
+
+                strength.style.color = "#dc2626";
+
+            } else if (
+                password.match(/[A-Z]/) &&
+                password.match(/[a-z]/) &&
+                password.match(/[0-9]/) &&
+                password.match(/[^A-Za-z0-9]/)
+            ) {
+
+                strength.textContent =
+                    "Strong password ✓";
+
+                strength.style.color = "#16a34a";
+
+            } else {
+
+                strength.textContent =
+                    "Good password — add uppercase, number and special character for extra strength.";
+
+                strength.style.color = "#d97706";
+
+            }
+        }
+
+
+        function validateForm() {
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const phone =
+                document.getElementById("phone").value;
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return false;
+            }
+
+            if (phone.length !== 10) {
+
+                alert("Please enter a valid 10-digit phone number.");
+
+                return false;
+            }
+
+            return true;
+        }
+
+    </script>
+
+</body>
+
+</html>
